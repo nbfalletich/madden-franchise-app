@@ -1,0 +1,66 @@
+/**
+ * SEED DATA — a verbatim snapshot of the Google Sheets workbook tabs.
+ *
+ * The app reads from here when `SHEET_ID` is not set (local dev, first deploy).
+ * When `SHEET_ID` is set, `lib/data/sheets.ts` fetches the live tab instead and
+ * this is ignored. Keep the tab keys identical to the Google Sheet tab names.
+ *
+ * To refresh: open the tab in Google Sheets, File -> Download -> CSV, paste the
+ * contents between the backticks. Column headers must stay on the first line.
+ */
+
+export type SheetTab =
+  | "LEAGUE_STATUS"
+  | "L_CAREERS"
+  | "CHAMPIONS"
+  | "AWARDS"
+  | "HALL_OF_FAME"
+  | "L_RECORDS"
+  | "L_EVENTS"
+  | "X_PERSONALITIES";
+
+export const SEED: Record<SheetTab, string> = {
+  LEAGUE_STATUS: `STATUS_DATE
+PRESEASON WEEK 1`,
+
+  L_CAREERS: `USER,COACH_NAME,YEAR,RECORD,TEAM,RESULT
+NATHAN,,2027,,,
+LUKE,,2027,,,
+RYAN,,2027,,,`,
+
+  CHAMPIONS: `YEAR,GAME,WINNER,GAME_DESCRIPTION
+2027,AFC Championship,,
+2027,NFC Championship,,
+2027,Super Bowl,,`,
+
+  AWARDS: `YEAR,AWARD,WINNER
+2027,MVP,
+2027,COACH OF THE YEAR,
+2027,DPOY,
+2027,SB MVP,`,
+
+  HALL_OF_FAME: `NAME,INDUCTION_YEAR`,
+
+  L_RECORDS: `YEAR,RECORD,PLAYER,AMOUNT`,
+
+  L_EVENTS: `YEAR,EVENT_NAME,EVENT_TYPE,EVENT_DESCRIPTION
+2027,SEAHAWKS WHITE HOUSE VISIT,OUTER-LEAGUE LORE,DONALD TRUMP WELCOMES THE SEAHAWKS TO THE WHITE HOUSE
+,,INTRA-LEAGUE LORE,`,
+
+  X_PERSONALITIES: `PERSONALITY,PERSONALITY_TYPE,START_YEAR,END_YEAR
+SKIP BAYLESS,HOT TAKE ARTIST,2027,2039
+COLIN COWHERD,HOT TAKE ARTIST,2027,2039
+TOM BRADY,FORMER PLAYER,2027,
+SHANNON SHARPE,HOT TAKE ARTIST,2027,
+MEL KIPER JR.,DRAFT ANALYST,2027,2039
+TODD MCSHAY,DRAFT ANALYST,2027,
+JOHNNY MANZIEL,FORMER PLAYER,2027,
+BRETT FAVRE,FORMER PLAYER,2027,
+ANTONIO BROWN,,2027,
+TIM TEBOW,,2027,
+RAY LEWIS,,2027,
+RAY RICE,,2027,
+PEYTON MANNING,,2027,
+MICHAEL VICK,,2027,
+DONALD TRUMP,,2027,2032`,
+};

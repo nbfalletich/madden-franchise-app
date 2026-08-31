@@ -11,6 +11,7 @@ import {
   getTeams,
 } from "@/lib/data/leagueData";
 import { HistoryNav } from "@/components/history-nav";
+import { CoverImage } from "@/components/cover-image";
 import { SectionHeader } from "@/components/section-header";
 import { ChampionCard } from "@/components/champion-card";
 import { AwardList } from "@/components/award-list";
@@ -123,9 +124,17 @@ export default async function HistoryPage() {
             {hof.map((person) => (
               <div
                 key={`${person.name}-${person.inductionYear}`}
-                className="flex items-center justify-between rounded-xl border border-white/10 bg-navy-800 p-4 shadow-card"
+                className="flex items-center gap-3 rounded-xl border border-white/10 bg-navy-800 p-4 shadow-card"
               >
-                <span className="font-display text-base font-bold text-slate-50">
+                {person.imageUrl && (
+                  <CoverImage
+                    src={person.imageUrl}
+                    alt={person.name}
+                    className="aspect-square h-12 w-12 shrink-0 rounded-full"
+                    sizes="48px"
+                  />
+                )}
+                <span className="min-w-0 flex-1 truncate font-display text-base font-bold text-slate-50">
                   {person.name}
                 </span>
                 <span className="font-display text-sm font-bold tabular-nums text-amber-400">

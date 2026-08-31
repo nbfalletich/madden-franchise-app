@@ -21,8 +21,11 @@
  */
 
 import { getRows, isLiveSource } from "./sheets";
+import { getDriveMap, getGenericPhoto, photoFor } from "./drive";
 import { NFL_TEAMS } from "./nflTeams";
 import { resolveTeamName } from "@/lib/teams";
+import generatedNews from "@/data/generated/news.json";
+import generatedSocial from "@/data/generated/social.json";
 import type {
   Award,
   Coach,
@@ -36,8 +39,10 @@ import type {
   LeagueStatus,
   MediaPersonality,
   NewsArticle,
+  NewsCategory,
   SeasonAwards,
   SeasonChampions,
+  SocialPost,
   Team,
 } from "@/lib/types";
 import {
@@ -48,7 +53,10 @@ import {
   toIntOrUndefined,
 } from "@/lib/utils";
 
-export const DATA_SOURCE: "live" | "seed" = isLiveSource ? "live" : "seed";
+/** "live" when SHEET_ID is set (reading Google Sheets), "seed" otherwise. */
+export function dataSource(): "live" | "seed" {
+  return isLiveSource() ? "live" : "seed";
+}
 const FALLBACK_YEAR = 2027;
 
 /* -------------------------------------------------------------------------- */
@@ -152,7 +160,10 @@ export async function getLeagueStatus(): Promise<LeagueStatus> {
 /*  Coaches / careers (tab: L_CAREERS)                                         */
 /* -------------------------------------------------------------------------- */
 
-function mapCareerRow(r: Record<string, string>): CoachSeasonRow {
+function mapCareerRow(
+  r: Record<string, string>,
+  driveMap: Record<string, string>,
+): CoachSeasonRow {
   return {
     user: r["USER"]?.trim() ?? "",
     coachName: r["COACH_NAME"]?.trim() || undefined,
@@ -160,6 +171,7 @@ function mapCareerRow(r: Record<string, string>): CoachSeasonRow {
     record: r["RECORD"]?.trim() || undefined,
     team: r["TEAM"]?.trim() || undefined,
     result: r["RESULT"]?.trim() || undefined,
+    imageUrl: photoFor(r["DRIVE_ID"], driveMap),
   };
 }
 
@@ -184,7 +196,11 @@ function hydrateSeason(row: CoachSeasonRow): CoachSeason {
 }
 
 export async function getCoaches(): Promise<Coach[]> {
-  const rows = (await getRows("L_CAREERS")).map(mapCareerRow).filter((r) => r.user);
+  const [raw, driveMap] = await Promise.all([
+    getRows("L_CAREERS"),
+    getDriveMap(),
+  ]);
+  const rows = raw.map((r) => mapCareerRow(r, driveMap)).filter((r) => r.user);
 
   const byUser = new Map<string, CoachSeasonRow[]>();
   for (const row of rows) {
@@ -244,29 +260,38 @@ export async function getCoach(user: string): Promise<Coach | undefined> {
 /*  Champions (tab: CHAMPIONS)                                                 */
 /* -------------------------------------------------------------------------- */
 
-function mapChampionshipRow(r: Record<string, string>): ChampionshipResult {
+function mapChampionshipRow(
+  r: Record<string, string>,
+  driveMap: Record<string, string>,
+): ChampionshipResult {
   return {
     year: toIntOrUndefined(r["YEAR"]) ?? FALLBACK_YEAR,
     game: r["GAME"]?.trim() ?? "",
     winner: r["WINNER"]?.trim() || undefined,
     description: r["GAME_DESCRIPTION"]?.trim() || undefined,
+    imageUrl: photoFor(r["DRIVE_ID"], driveMap),
   };
 }
 
 export async function getSeasonChampions(): Promise<SeasonChampions[]> {
-  const rows = (await getRows("CHAMPIONS"))
-    .map(mapChampionshipRow)
+  const [raw, driveMap] = await Promise.all([
+    getRows("CHAMPIONS"),
+    getDriveMap(),
+  ]);
+  const rows = raw
+    .map((r) => mapChampionshipRow(r, driveMap))
     .filter((r) => r.game);
 
   const byYear = new Map<number, SeasonChampions>();
   for (const row of rows) {
-    const entry =
-      byYear.get(row.year) ?? { year: row.year, decided: false };
+    const entry = byYear.get(row.year) ?? { year: row.year, decided: false };
     const g = row.game.toLowerCase();
     if (g.includes("afc")) entry.afc = row;
     else if (g.includes("nfc")) entry.nfc = row;
     else if (g.includes("super bowl")) entry.superBowl = row;
     entry.decided = Boolean(entry.superBowl?.winner);
+    entry.imageUrl =
+      entry.superBowl?.imageUrl ?? entry.nfc?.imageUrl ?? entry.afc?.imageUrl;
     byYear.set(row.year, entry);
   }
 
@@ -278,10 +303,12 @@ export async function getSeasonChampions(): Promise<SeasonChampions[]> {
 /* -------------------------------------------------------------------------- */
 
 export async function getAwardsBySeason(): Promise<SeasonAwards[]> {
-  const rows = (await getRows("AWARDS")).map((r) => ({
+  const [raw, driveMap] = await Promise.all([getRows("AWARDS"), getDriveMap()]);
+  const rows = raw.map((r) => ({
     year: toIntOrUndefined(r["YEAR"]) ?? FALLBACK_YEAR,
     award: r["AWARD"]?.trim() ?? "",
     winner: r["WINNER"]?.trim() || undefined,
+    imageUrl: photoFor(r["DRIVE_ID"], driveMap),
   })) as Award[];
 
   const byYear = new Map<number, Award[]>();
@@ -296,6 +323,7 @@ export async function getAwardsBySeason(): Promise<SeasonAwards[]> {
       year,
       awards,
       decided: awards.some((a) => a.winner),
+      imageUrl: awards.find((a) => a.imageUrl)?.imageUrl,
     }))
     .sort((a, b) => b.year - a.year);
 }
@@ -305,10 +333,15 @@ export async function getAwardsBySeason(): Promise<SeasonAwards[]> {
 /* -------------------------------------------------------------------------- */
 
 export async function getHallOfFame(): Promise<HallOfFamer[]> {
-  return (await getRows("HALL_OF_FAME"))
+  const [raw, driveMap] = await Promise.all([
+    getRows("HALL_OF_FAME"),
+    getDriveMap(),
+  ]);
+  return raw
     .map((r) => ({
       name: r["NAME"]?.trim() ?? "",
       inductionYear: toIntOrUndefined(r["INDUCTION_YEAR"]) ?? 0,
+      imageUrl: photoFor(r["DRIVE_ID"], driveMap),
     }))
     .filter((h) => h.name)
     .sort((a, b) => b.inductionYear - a.inductionYear);
@@ -319,13 +352,18 @@ export async function getHallOfFame(): Promise<HallOfFamer[]> {
 /* -------------------------------------------------------------------------- */
 
 export async function getRecords(): Promise<LeagueRecord[]> {
-  return (await getRows("L_RECORDS"))
+  const [raw, driveMap] = await Promise.all([
+    getRows("L_RECORDS"),
+    getDriveMap(),
+  ]);
+  return raw
     .map((r, i) => ({
       id: `rec-${i}`,
       year: toIntOrUndefined(r["YEAR"]),
       record: r["RECORD"]?.trim() ?? "",
       player: r["PLAYER"]?.trim() || undefined,
       amount: r["AMOUNT"]?.trim() || undefined,
+      imageUrl: photoFor(r["DRIVE_ID"], driveMap),
     }))
     .filter((r) => r.record);
 }
@@ -342,7 +380,11 @@ function loreScope(type: string): LeagueEvent["scope"] {
 }
 
 export async function getLore(): Promise<LeagueEvent[]> {
-  return (await getRows("L_EVENTS"))
+  const [raw, driveMap] = await Promise.all([
+    getRows("L_EVENTS"),
+    getDriveMap(),
+  ]);
+  return raw
     .map((r, i) => {
       const name = r["EVENT_NAME"]?.trim() ?? "";
       const type = r["EVENT_TYPE"]?.trim() ?? "";
@@ -354,6 +396,7 @@ export async function getLore(): Promise<LeagueEvent[]> {
         type,
         scope: loreScope(type),
         description: r["EVENT_DESCRIPTION"]?.trim() || undefined,
+        imageUrl: photoFor(r["DRIVE_ID"], driveMap),
       };
     })
     .filter((e) => e.name)
@@ -379,7 +422,7 @@ function handleFromName(name: string): string {
     .split(/\s+/)
     .map((w) => w.replace(/[^a-zA-Z0-9]/g, ""))
     .filter(Boolean)
-    .map((w, i) => (i === 0 ? w : w[0]!.toUpperCase() + w.slice(1).toLowerCase()))
+    .map((w) => w[0]!.toUpperCase() + w.slice(1).toLowerCase())
     .join("");
 }
 
@@ -437,41 +480,114 @@ export async function getPersonalitiesByRole(): Promise<
 }
 
 /* -------------------------------------------------------------------------- */
-/*  News + Social — no tab yet (planned AI-generated content)                  */
+/*  News + Social — AI-generated, read from data/generated/*.json             */
+/*                                                                            */
+/*  These files are produced by `npm run generate:news` / `generate:social`   */
+/*  (see lib/ai/* and scripts/*). The generator reads the same sheet data     */
+/*  through the functions above, so News/Social stay in sync with the sheet   */
+/*  on each generation run. Empty arrays => the pages show empty states.      */
 /* -------------------------------------------------------------------------- */
 
-/** Returns [] until a NEWS tab (or an AI generator) exists. */
+const NEWS: NewsArticle[] = [
+  ...(generatedNews as unknown as NewsArticle[]),
+].sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
+const SOCIAL: SocialPost[] = [
+  ...(generatedSocial as unknown as SocialPost[]),
+].sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));
+
 export async function getNews(): Promise<NewsArticle[]> {
-  return [];
+  return NEWS;
 }
 
-export async function getArticleBySlug(): Promise<NewsArticle | undefined> {
-  return undefined;
+export async function getNewsCategories(): Promise<Array<"All" | NewsCategory>> {
+  const present = new Set(NEWS.map((a) => a.category));
+  const ordered: NewsCategory[] = [
+    "Game Recaps",
+    "Transactions",
+    "League News",
+    "Rumors",
+    "Commissioner",
+  ];
+  return ["All", ...ordered.filter((c) => present.has(c))];
+}
+
+export async function getFeaturedArticle(): Promise<NewsArticle | undefined> {
+  return NEWS.find((a) => a.featured) ?? NEWS[0];
+}
+
+export async function getArticleBySlug(
+  slug: string,
+): Promise<NewsArticle | undefined> {
+  return NEWS.find((a) => a.slug === slug);
 }
 
 export async function getAllArticleSlugs(): Promise<string[]> {
-  return [];
+  return NEWS.map((a) => a.slug);
 }
+
+export async function getRelatedArticles(
+  slug: string,
+  count = 3,
+): Promise<NewsArticle[]> {
+  const current = NEWS.find((a) => a.slug === slug);
+  if (!current) return NEWS.slice(0, count);
+  const sameTeam = (a: NewsArticle) =>
+    (a.teamIds ?? []).some((id) => (current.teamIds ?? []).includes(id));
+  return [...NEWS]
+    .filter((a) => a.slug !== slug)
+    .map((a) => ({
+      a,
+      score: (a.category === current.category ? 2 : 0) + (sameTeam(a) ? 1 : 0),
+    }))
+    .sort(
+      (x, y) =>
+        y.score - x.score ||
+        +new Date(y.a.publishedAt) - +new Date(x.a.publishedAt),
+    )
+    .slice(0, count)
+    .map((s) => s.a);
+}
+
+export async function getSocialFeed(limit?: number): Promise<SocialPost[]> {
+  return typeof limit === "number" ? SOCIAL.slice(0, limit) : SOCIAL;
+}
+
+/** The "no photo assigned" fallback image (Drive file named `Generic`). */
+export { getGenericPhoto };
 
 /* -------------------------------------------------------------------------- */
 /*  Home page bundle                                                           */
 /* -------------------------------------------------------------------------- */
 
 export async function getHomeData() {
-  const [status, coaches, champions, lore, personalities] = await Promise.all([
-    getLeagueStatus(),
-    getCoaches(),
-    getSeasonChampions(),
-    getLore(),
-    getPersonalities(),
-  ]);
+  const [status, coaches, champions, lore, personalities, genericPhoto] =
+    await Promise.all([
+      getLeagueStatus(),
+      getCoaches(),
+      getSeasonChampions(),
+      getLore(),
+      getPersonalities(),
+      getGenericPhoto(),
+    ]);
+
+  // The home feature slot only takes stories that have a real, assigned photo.
+  const featuredArticle =
+    NEWS.find((a) => a.featured && a.imageUrl) ?? NEWS.find((a) => a.imageUrl);
+  const featuredLore = featuredArticle
+    ? undefined
+    : lore.find((e) => e.imageUrl);
 
   return {
     status,
     coaches,
+    genericPhoto,
     currentChampions: champions.find((c) => c.year === status.year),
     latestLore: lore.slice(0, 3),
     activePersonalities: personalities.filter((p) => p.active),
+    featuredArticle,
+    featuredLore,
+    latestNews: NEWS.filter((a) => a.slug !== featuredArticle?.slug).slice(0, 4),
+    latestSocial: SOCIAL.slice(0, 3),
   };
 }
 

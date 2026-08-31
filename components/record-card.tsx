@@ -1,11 +1,28 @@
 import type { LeagueRecord } from "@/lib/types";
+import { CoverImage } from "@/components/cover-image";
 
 /**
- * Single league record: name, big value, holder, season.
+ * Single league record: name, big value, holder, season. Shows the Drive photo
+ * (DRIVE_ID) as a thumbnail when there is one.
  */
-export function RecordCard({ record }: { record: LeagueRecord }) {
+export function RecordCard({
+  record,
+  genericImageUrl,
+}: {
+  record: LeagueRecord;
+  genericImageUrl?: string;
+}) {
   return (
     <div className="flex items-center gap-4 rounded-xl border border-white/10 bg-navy-800 p-4 shadow-card">
+      {(record.imageUrl || genericImageUrl) && (
+        <CoverImage
+          src={record.imageUrl}
+          fallbackSrc={genericImageUrl}
+          alt={record.record}
+          className="aspect-square h-14 w-14 shrink-0 rounded-lg"
+          sizes="56px"
+        />
+      )}
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-slate-200">{record.record}</p>
         <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-slate-500">

@@ -15,11 +15,13 @@ export function NewsCard({
   now,
   teams = [],
   variant = "default",
+  genericImageUrl,
 }: {
   article: NewsArticle;
   now: string;
   teams?: Team[];
   variant?: "default" | "compact";
+  genericImageUrl?: string;
 }) {
   const associated = (article.teamIds ?? [])
     .map((id) => teams.find((t) => t.id === id))
@@ -33,6 +35,7 @@ export function NewsCard({
       >
         <CoverImage
           src={article.imageUrl}
+          fallbackSrc={genericImageUrl}
           alt={article.title}
           className="aspect-square h-16 w-16 shrink-0 rounded-md"
           sizes="64px"
@@ -59,6 +62,7 @@ export function NewsCard({
     >
       <CoverImage
         src={article.imageUrl}
+        fallbackSrc={genericImageUrl}
         alt={article.title}
         className="aspect-[16/9] w-full"
         sizes="(max-width: 768px) 100vw, 400px"

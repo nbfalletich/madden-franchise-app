@@ -2,6 +2,7 @@ import { Trophy } from "lucide-react";
 import type { SeasonChampions, Team } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { TeamLogo } from "@/components/team-logo";
+import { CoverImage } from "@/components/cover-image";
 import { resolveTeamName } from "@/lib/teams";
 import { cn } from "@/lib/utils";
 
@@ -13,10 +14,12 @@ export function ChampionCard({
   season,
   teams,
   featured = false,
+  genericImageUrl,
 }: {
   season: SeasonChampions;
   teams: Team[];
   featured?: boolean;
+  genericImageUrl?: string;
 }) {
   const sbWinner = season.superBowl?.winner;
   const sbTeam = resolveTeamName(sbWinner, teams);
@@ -24,7 +27,17 @@ export function ChampionCard({
 
   return (
     <div className="relative h-full overflow-hidden rounded-xl border border-white/10 bg-navy-800 shadow-card">
-      <div className="h-1.5 w-full" style={{ backgroundColor: accent }} />
+      {season.imageUrl || genericImageUrl ? (
+        <CoverImage
+          src={season.imageUrl}
+          fallbackSrc={genericImageUrl}
+          alt={`${season.year} champions`}
+          className={cn("w-full", featured ? "aspect-[16/9]" : "aspect-[16/7]")}
+          sizes="(max-width: 768px) 100vw, 400px"
+        />
+      ) : (
+        <div className="h-1.5 w-full" style={{ backgroundColor: accent }} />
+      )}
       <div className={cn("p-4 sm:p-5", featured && "sm:p-7")}>
         <div className="flex items-center justify-between">
           <span className="font-display text-sm font-bold uppercase tracking-wide text-slate-400">

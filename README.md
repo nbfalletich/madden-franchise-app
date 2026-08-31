@@ -40,6 +40,16 @@ With no environment variables the app runs on the committed data snapshot in
 
 No API key and no OAuth. See `.env.example`.
 
+**Check which source is live:** open `/api/health`. `"source": "seed"` means `SHEET_ID`
+is not set (or the fetch failed) and sheet edits are **not** reflected; `"source":
+"live"` means it's reading the Google Sheet. It also shows the row count per tab.
+
+Set `SHEET_ID` in **both** places independently — they don't share config:
+- **Local:** a `.env.local` file in the project root with `SHEET_ID=...` (restart `npm run dev`).
+- **Vercel:** Project → Settings → Environment Variables, then redeploy.
+
+`.env.local` is also read by `npm run generate:*` (via `scripts/_env.ts`).
+
 ### Expected tabs
 
 Tab names must match exactly. Column headers are read from row 1.
@@ -85,6 +95,94 @@ components/              app-header, mobile-bottom-nav, season-banner, coach-car
                          champion-card, award-list, record-card, lore-card,
                          career-table, personality-card, featured-event, ...
 ```
+
+## Google Drive photos (`DRIVE_ID`)
+
+Each tab can carry a `DRIVE_ID` column holding a plain number. A shared Drive
+folder holds image files named `1.jpg`, `2.png`, … The number links the row to
+its photo, which then appears on the news story / lore card / champion card / etc.
+
+- `scripts/build-drive-map.ts` lists the folder via the Drive API and writes
+  `data/generated/driveMap.json` = `{ "1": "<url>", "2": "…" }`.
+- `lib/data/drive.ts` resolves `DRIVE_ID` → URL. If `GOOGLE_API_KEY` is set it
+  lists the folder **live** (cached 5 min); otherwise it uses the committed
+  `driveMap.json`.
+- Serving the image needs no key (it's `https://lh3.googleusercontent.com/d/<id>`);
+  only the folder listing does.
+
+### Setup
+
+1. Enable the **Google Drive API** in Google Cloud and make an **API key**.
+2. `GOOGLE_API_KEY=...` in `.env.local`, in the GitHub Actions secrets, and
+   (optional, for near-live photos) in Vercel env vars.
+3. Folder id is hardcoded in `lib/data/drive.ts`; override with `DRIVE_FOLDER_ID`.
+4. Put the number in the `DRIVE_ID` cell for the row you want a photo on.
+
+Missing / unknown numbers fall back to the team-colour gradient. `/api/health`
+shows `driveSource` and `drivePhotoCount`.
+
+## AI-generated news & social
+
+News articles and social posts are **generated from the sheet data**, not hand-written
+and not created at request time. The generator reads the same league data through
+`lib/data/leagueData.ts`, calls Claude once per story-worthy fact, and writes the
+results to `data/generated/news.json` / `data/generated/social.json`, which the app
+serves as static content.
+
+```
+sheet data ──► lib/ai/storyCandidates.ts   (one candidate per event/champion/award/record/career,
+                                             each with a stable sourceKey for dedupe)
+           ──► lib/ai/generateStory.ts      (Claude, structured output → NewsArticle)
+           ──► lib/ai/generateSocial.ts     (Claude → a short thread of SocialPosts)
+scripts/generate-news.ts / generate-social.ts   orchestrate + merge + write the JSON
+```
+
+### Run it
+
+```bash
+# put your key in .env.local (gitignored):  ANTHROPIC_API_KEY=sk-ant-...
+npm run generate                          # news + social, new stories only
+npm run generate:news -- --only <slug>    # rewrite specific story/thread(s), comma-separated
+npm run generate:news -- --force          # rewrite everything (old text stays in git)
+npm run generate:news -- --limit 3        # cap a run
+```
+
+Optional env: `NEWS_MODEL` / `SOCIAL_MODEL` (default `claude-opus-5`),
+`NEWS_EFFORT` (default `medium`), `SOCIAL_EFFORT` (default `low`).
+
+**News** is written short and dramatic — league canon, not box scores (feature 3–5
+short paragraphs, recap 2–3, brief 1–2).
+
+**Social:** one call per story generates a post from **every active personality**.
+Accounts whose `X_PERSONALITIES.PERSONALITY_TYPE` is **`PUBLIC FIGURE`** post
+*off-topic* — something plausible for that real person's public life (politics,
+business, feuds), never about the league. Everyone else reacts in character, and
+famously provocative figures are written to actually be provocative. `DONALD TRUMP`
+is seeded as `PUBLIC FIGURE`; set the type on any others you want to behave that way.
+
+### Append-only archive
+
+`data/generated/*.json` is **write-once, never pruned**:
+
+- A new source row → a new story. That's the only thing a normal run does.
+- **Deleting** a source row from the sheet does **not** remove the story it produced.
+- **Editing** a source row does **not** change or regenerate an existing story — a
+  recap reflects how things read when it was written. Use `--only <slug>` (or
+  `--force`) if you deliberately want to rewrite one.
+- Slugs are stable, so `/news/<slug>` URLs never break.
+- The files are committed by the Action, so git history holds every prior version too.
+
+### Automate it
+
+`.github/workflows/generate-content.yml` runs every 6 hours (and on demand via
+"Run workflow"), regenerates, and commits any changes — Vercel redeploys on the push.
+Add two repo secrets under **Settings → Secrets and variables → Actions**:
+
+- `ANTHROPIC_API_KEY`
+- `SHEET_ID` (same value as the Vercel env var)
+
+The `@anthropic-ai/sdk` / `zod` deps are devDependencies and are never imported by the
+Next app — only by the scripts.
 
 ## Adding a new data source later (e.g. `NEWS`, `X_POSTS`)
 

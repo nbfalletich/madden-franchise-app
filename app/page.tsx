@@ -1,16 +1,14 @@
-import Link from "next/link";
-import { Newspaper, ScrollText, Trophy } from "lucide-react";
-import {
-  getAwardsBySeason,
-  getHomeData,
-  getTeams,
-} from "@/lib/data/leagueData";
+import { Newspaper, ScrollText } from "lucide-react";
+import { getAwardsBySeason, getHomeData, getTeams } from "@/lib/data/leagueData";
 import { SeasonBanner } from "@/components/season-banner";
+import { FeaturedStory } from "@/components/featured-story";
 import { FeaturedEvent } from "@/components/featured-event";
 import { SectionHeader } from "@/components/section-header";
 import { CoachCard } from "@/components/coach-card";
+import { NewsCard } from "@/components/news-card";
 import { LoreCard } from "@/components/lore-card";
 import { PersonalityCard } from "@/components/personality-card";
+import { SocialPostCard } from "@/components/social-post-card";
 import { StatTile } from "@/components/stat-tile";
 import { EmptyState } from "@/components/empty-state";
 
@@ -24,28 +22,65 @@ export default async function HomePage() {
     getAwardsBySeason(),
   ]);
 
-  const { status, coaches, currentChampions, latestLore, activePersonalities } =
-    home;
+  const {
+    status,
+    coaches,
+    genericPhoto,
+    currentChampions,
+    latestLore,
+    activePersonalities,
+    featuredArticle,
+    featuredLore,
+    latestNews,
+    latestSocial,
+  } = home;
   const teamById = (id?: string) => teams.find((t) => t.id === id);
+  const now = new Date().toISOString();
 
   const thisYearAwards = awardsBySeason.find((a) => a.year === status.year);
   const awardWinner = (name: string) =>
-    thisYearAwards?.awards.find((a) =>
-      a.award.toUpperCase().includes(name),
-    )?.winner;
+    thisYearAwards?.awards.find((a) => a.award.toUpperCase().includes(name))
+      ?.winner;
 
   return (
     <div className="space-y-10 animate-fade-in">
       <SeasonBanner status={status} />
 
-      {latestLore[0] ? (
-        <FeaturedEvent event={latestLore[0]} />
+      {featuredArticle ? (
+        <FeaturedStory
+          article={featuredArticle}
+          now={now}
+          genericImageUrl={genericPhoto}
+        />
+      ) : featuredLore ? (
+        <FeaturedEvent event={featuredLore} genericImageUrl={genericPhoto} />
       ) : (
         <EmptyState
           icon={ScrollText}
           title="The story starts here"
-          description={`Season ${status.seasonNumber} is underway. Headlines and lore will fill this space as it happens.`}
+          description={`Season ${status.seasonNumber} is underway. A photo-backed story will headline this space as soon as one is tagged.`}
         />
+      )}
+
+      {latestNews.length > 0 && (
+        <section>
+          <SectionHeader
+            eyebrow="Latest"
+            title="Around the League"
+            action={{ label: "All news", href: "/news" }}
+          />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {latestNews.map((article) => (
+              <NewsCard
+                key={article.slug}
+                article={article}
+                teams={teams}
+                now={now}
+                genericImageUrl={genericPhoto}
+              />
+            ))}
+          </div>
+        </section>
       )}
 
       <section>
@@ -66,10 +101,7 @@ export default async function HomePage() {
       </section>
 
       <section>
-        <SectionHeader
-          eyebrow={`${status.year} Season`}
-          title="Up For Grabs"
-        />
+        <SectionHeader eyebrow={`${status.year} Season`} title="Up For Grabs" />
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <StatTile
             label="Super Bowl"
@@ -95,6 +127,27 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {latestSocial.length > 0 && (
+        <section>
+          <SectionHeader
+            eyebrow="The group chat"
+            title="Recent Social Activity"
+            action={{ label: "Open feed", href: "/social" }}
+          />
+          <div className="space-y-3">
+            {latestSocial.map((post) => (
+              <SocialPostCard
+                key={post.id}
+                post={post}
+                now={now}
+                team={teamById(post.teamId)}
+                compact
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
       <section>
         <SectionHeader
           eyebrow="Oral history"
@@ -104,7 +157,11 @@ export default async function HomePage() {
         {latestLore.length > 0 ? (
           <div className="grid gap-3 sm:grid-cols-2">
             {latestLore.map((event) => (
-              <LoreCard key={event.id} event={event} />
+              <LoreCard
+                key={event.id}
+                event={event}
+                genericImageUrl={genericPhoto}
+              />
             ))}
           </div>
         ) : (
@@ -129,23 +186,16 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section>
-        <SectionHeader eyebrow="Coming soon" title="Newsroom" />
-        <EmptyState
-          icon={Newspaper}
-          title="AI-generated recaps are on the way"
-          description="Game stories, power rankings, and headlines will publish here once the season kicks off."
-        />
-        <div className="mt-3 flex justify-center">
-          <Link
-            href="/history"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-amber-400 hover:text-amber-300"
-          >
-            <Trophy className="h-4 w-4" />
-            Browse league history instead
-          </Link>
-        </div>
-      </section>
+      {latestNews.length === 0 && (
+        <section>
+          <SectionHeader eyebrow="Coming soon" title="Newsroom" />
+          <EmptyState
+            icon={Newspaper}
+            title="AI-generated recaps are on the way"
+            description="Game stories and headlines publish here once there's league news to write about."
+          />
+        </section>
+      )}
     </div>
   );
 }

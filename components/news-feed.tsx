@@ -16,11 +16,13 @@ export function NewsFeed({
   categories,
   teams,
   now,
+  genericImageUrl,
 }: {
   articles: NewsArticle[];
   categories: Filter[];
   teams: Team[];
   now: string;
+  genericImageUrl?: string;
 }) {
   const [active, setActive] = useState<Filter>("All");
 
@@ -87,6 +89,7 @@ export function NewsFeed({
               article={article}
               teams={teams}
               now={now}
+              genericImageUrl={genericImageUrl}
             />
           ))}
         </div>

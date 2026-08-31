@@ -1,0 +1,67 @@
+name: Generate AI content
+
+# Regenerates data/generated/{news,social}.json from the Google Sheet and
+# commits the result. Vercel redeploys on the push.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions):
+#   ANTHROPIC_API_KEY   - your Anthropic API key
+#   SHEET_ID            - the Google Sheets workbook id (same as the Vercel env var)
+#   GOOGLE_API_KEY      - Google API key with the Drive API enabled (for photo linkage)
+
+on:
+  schedule:
+    - cron: "0 */6 * * *" # every 6 hours
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Regenerate everything (ignore cache)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: generate-content
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Build Drive photo map
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: npm run build:drive-map
+
+      - name: Generate news + social
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          FLAG=""
+          if [ "${{ inputs.force }}" = "true" ]; then FLAG="-- --force"; fi
+          npm run generate:news $FLAG
+          npm run generate:social $FLAG
+
+      - name: Commit if changed
+        run: |
+          git config user.name "franchise-wire-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/generated/news.json data/generated/social.json data/generated/driveMap.json
+          if git diff --cached --quiet; then
+            echo "No content changes."
+          else
+            git commit -m "chore(content): refresh AI news + social + drive map"
+            git push
+          fi

@@ -69,6 +69,7 @@ export default async function LoreDetailPage({
         </h1>
 
         <CoverImage
+          src={event.imageUrl}
           alt={event.name}
           priority
           className="mt-6 aspect-[16/9] w-full rounded-xl border border-white/10"

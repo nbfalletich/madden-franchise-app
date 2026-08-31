@@ -9,7 +9,13 @@ import { CoverImage } from "@/components/cover-image";
  * the narrative content that exists pre-season. Swaps to a news hero once the
  * News source is wired.
  */
-export function FeaturedEvent({ event }: { event: LeagueEvent }) {
+export function FeaturedEvent({
+  event,
+  genericImageUrl,
+}: {
+  event: LeagueEvent;
+  genericImageUrl?: string;
+}) {
   const Icon = event.scope === "intra" ? Users : Globe;
 
   return (
@@ -19,6 +25,8 @@ export function FeaturedEvent({ event }: { event: LeagueEvent }) {
     >
       <div className="relative">
         <CoverImage
+          src={event.imageUrl}
+          fallbackSrc={genericImageUrl}
           alt={event.name}
           priority
           className="aspect-[16/10] w-full sm:aspect-[21/9]"

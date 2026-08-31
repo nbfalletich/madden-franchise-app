@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Newspaper, Sparkles } from "lucide-react";
-import { getLeagueStatus } from "@/lib/data/leagueData";
+import {
+  getGenericPhoto,
+  getLeagueStatus,
+  getNews,
+  getNewsCategories,
+  getTeams,
+} from "@/lib/data/leagueData";
+import { NewsFeed } from "@/components/news-feed";
 import { EmptyState } from "@/components/empty-state";
 
 export const metadata: Metadata = {
@@ -10,16 +17,16 @@ export const metadata: Metadata = {
 
 export const revalidate = 300;
 
-const PLANNED_CATEGORIES = [
-  "Game Recaps",
-  "Transactions",
-  "League News",
-  "Rumors",
-  "Commissioner",
-];
-
 export default async function NewsPage() {
-  const status = await getLeagueStatus();
+  const [articles, categories, teams, status, genericPhoto] = await Promise.all([
+    getNews(),
+    getNewsCategories(),
+    getTeams(),
+    getLeagueStatus(),
+    getGenericPhoto(),
+  ]);
+
+  const now = new Date().toISOString();
 
   return (
     <div className="animate-fade-in">
@@ -32,28 +39,29 @@ export default async function NewsPage() {
         </p>
       </header>
 
-      <div className="mb-5 flex flex-wrap gap-2 opacity-50">
-        {PLANNED_CATEGORIES.map((c) => (
-          <span
-            key={c}
-            className="rounded-full border border-white/15 px-3.5 py-1.5 text-sm font-semibold text-slate-400"
-          >
-            {c}
-          </span>
-        ))}
-      </div>
-
-      <EmptyState
-        icon={Newspaper}
-        title="The newsroom opens with Week 1"
-        description={`It's ${status.raw.toLowerCase()}. Once games are played, this feed will fill with recaps, transactions, and headlines.`}
-        className="py-14"
-      />
-
-      <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
-        <Sparkles className="h-3.5 w-3.5" />
-        Planned: AI-generated stories from league results and personalities.
-      </div>
+      {articles.length > 0 ? (
+        <NewsFeed
+          articles={articles}
+          categories={categories}
+          teams={teams}
+          now={now}
+          genericImageUrl={genericPhoto}
+        />
+      ) : (
+        <>
+          <EmptyState
+            icon={Newspaper}
+            title="The newsroom opens with Week 1"
+            description={`It's ${status.raw.toLowerCase()}. Stories are generated from league results and lore — once there's something to write about, it lands here.`}
+            className="py-14"
+          />
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
+            <Sparkles className="h-3.5 w-3.5" />
+            Run <code className="rounded bg-white/5 px-1">npm run generate:news</code>{" "}
+            to populate this feed.
+          </div>
+        </>
+      )}
     </div>
   );
 }

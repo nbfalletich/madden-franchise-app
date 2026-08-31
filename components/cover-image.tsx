@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Responsive image with a graceful gradient fallback. Set the aspect ratio and
- * rounding on the wrapper via `className` (e.g. "aspect-[16/9] rounded-xl").
+ * Responsive image with a fallback cascade: `src` → `fallbackSrc` → gradient.
+ * Set the aspect ratio and rounding on the wrapper via `className`.
  */
 export function CoverImage({
   src,
+  fallbackSrc,
   alt,
   className,
   sizes = "(max-width: 768px) 100vw, 640px",
@@ -19,6 +20,7 @@ export function CoverImage({
   overlay = false,
 }: {
   src?: string;
+  fallbackSrc?: string;
   alt: string;
   className?: string;
   sizes?: string;
@@ -27,20 +29,25 @@ export function CoverImage({
   gradientTo?: string;
   overlay?: boolean;
 }) {
-  const [failed, setFailed] = useState(false);
-  const showImage = Boolean(src) && !failed;
+  const candidates = useMemo(
+    () => [src, fallbackSrc].filter((s): s is string => Boolean(s)),
+    [src, fallbackSrc],
+  );
+  const [idx, setIdx] = useState(0);
+  const current = candidates[idx];
 
   return (
     <div className={cn("relative overflow-hidden bg-navy-800", className)}>
-      {showImage ? (
+      {current ? (
         <Image
-          src={src as string}
+          key={current}
+          src={current}
           alt={alt}
           fill
           sizes={sizes}
           priority={priority}
           className="object-cover"
-          onError={() => setFailed(true)}
+          onError={() => setIdx((i) => i + 1)}
         />
       ) : (
         <div

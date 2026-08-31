@@ -12,11 +12,15 @@
 
 import { SEED, type SheetTab } from "./seed";
 
-const SHEET_ID = process.env.SHEET_ID?.trim();
 const REVALIDATE_SECONDS = 300;
 
-function gvizUrl(tab: SheetTab): string {
-  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&headers=1&sheet=${encodeURIComponent(
+/** Read lazily so scripts that load .env.local after import still see it. */
+function sheetId(): string | undefined {
+  return process.env.SHEET_ID?.trim() || undefined;
+}
+
+function gvizUrl(tab: SheetTab, id: string): string {
+  return `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&headers=1&sheet=${encodeURIComponent(
     tab,
   )}`;
 }
@@ -82,10 +86,11 @@ export function csvToObjects(text: string): Record<string, string>[] {
  * Falls back to the seed snapshot on any fetch failure so the app never breaks.
  */
 export async function getRows(tab: SheetTab): Promise<Record<string, string>[]> {
-  if (!SHEET_ID) return csvToObjects(SEED[tab]);
+  const id = sheetId();
+  if (!id) return csvToObjects(SEED[tab]);
 
   try {
-    const res = await fetch(gvizUrl(tab), {
+    const res = await fetch(gvizUrl(tab, id), {
       next: { revalidate: REVALIDATE_SECONDS },
     });
     if (!res.ok) throw new Error(`${tab}: HTTP ${res.status}`);
@@ -99,4 +104,6 @@ export async function getRows(tab: SheetTab): Promise<Record<string, string>[]> 
   }
 }
 
-export const isLiveSource = Boolean(SHEET_ID);
+export function isLiveSource(): boolean {
+  return Boolean(sheetId());
+}

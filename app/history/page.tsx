@@ -3,6 +3,7 @@ import { Award, BookMarked, ScrollText, Star } from "lucide-react";
 import {
   getAwardsBySeason,
   getCoaches,
+  getGenericPhoto,
   getHallOfFame,
   getLeagueStatus,
   getLore,
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 export default async function HistoryPage() {
-  const [status, champions, awards, hof, records, lore, coaches, teams] =
+  const [status, champions, awards, hof, records, lore, coaches, teams, genericPhoto] =
     await Promise.all([
       getLeagueStatus(),
       getSeasonChampions(),
@@ -39,6 +40,7 @@ export default async function HistoryPage() {
       getLore(),
       getCoaches(),
       getTeams(),
+      getGenericPhoto(),
     ]);
 
   const decidedChampions = champions.filter((c) => c.decided);
@@ -78,6 +80,7 @@ export default async function HistoryPage() {
                   season={featuredSeason}
                   teams={teams}
                   featured
+                  genericImageUrl={genericPhoto}
                 />
               </div>
             )}
@@ -86,6 +89,7 @@ export default async function HistoryPage() {
                 key={season.year}
                 season={season}
                 teams={teams}
+                genericImageUrl={genericPhoto}
               />
             ))}
           </div>
@@ -104,7 +108,11 @@ export default async function HistoryPage() {
         ) : (
           <div className="grid gap-4 sm:grid-cols-2">
             {awards.map((season) => (
-              <AwardList key={season.year} season={season} />
+              <AwardList
+                key={season.year}
+                season={season}
+                genericImageUrl={genericPhoto}
+              />
             ))}
           </div>
         )}
@@ -126,9 +134,10 @@ export default async function HistoryPage() {
                 key={`${person.name}-${person.inductionYear}`}
                 className="flex items-center gap-3 rounded-xl border border-white/10 bg-navy-800 p-4 shadow-card"
               >
-                {person.imageUrl && (
+                {(person.imageUrl || genericPhoto) && (
                   <CoverImage
                     src={person.imageUrl}
+                    fallbackSrc={genericPhoto}
                     alt={person.name}
                     className="aspect-square h-12 w-12 shrink-0 rounded-full"
                     sizes="48px"
@@ -158,7 +167,11 @@ export default async function HistoryPage() {
         ) : (
           <div className="grid gap-3 sm:grid-cols-2">
             {records.map((record) => (
-              <RecordCard key={record.id} record={record} />
+              <RecordCard
+                key={record.id}
+                record={record}
+                genericImageUrl={genericPhoto}
+              />
             ))}
           </div>
         )}
@@ -178,7 +191,7 @@ export default async function HistoryPage() {
             {lore.map((event) => (
               <li key={event.id} className="relative">
                 <span className="absolute -left-[1.30rem] top-5 h-2.5 w-2.5 rounded-full border-2 border-navy-900 bg-amber-400" />
-                <LoreCard event={event} />
+                <LoreCard event={event} genericImageUrl={genericPhoto} />
               </li>
             ))}
           </ol>

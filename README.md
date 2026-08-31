@@ -118,8 +118,18 @@ its photo, which then appears on the news story / lore card / champion card / et
 3. Folder id is hardcoded in `lib/data/drive.ts`; override with `DRIVE_FOLDER_ID`.
 4. Put the number in the `DRIVE_ID` cell for the row you want a photo on.
 
-Missing / unknown numbers fall back to the team-colour gradient. `/api/health`
-shows `driveSource` and `drivePhotoCount`.
+### The `Generic` photo + the feature slot
+
+- A Drive file named **`Generic`** (any extension, no number) is the leaguewide
+  "no photo assigned" fallback. Any story/card/lore item without its own
+  `DRIVE_ID` shows `Generic` instead of the gradient. (If `Generic` itself is
+  missing or fails to load, it falls back to the gradient.)
+- The **home-page feature story** only ever uses a story that has a *real,
+  assigned* `DRIVE_ID` photo — the `Generic` image never qualifies a story for
+  the top slot. If nothing is photo-tagged yet, the hero shows an empty state.
+
+Missing / unknown numbers fall back to `Generic`, then the gradient.
+`/api/health` shows `driveSource` and `drivePhotoCount` (the generic counts).
 
 ## AI-generated news & social
 

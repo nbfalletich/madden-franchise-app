@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Globe, Users } from "lucide-react";
 import {
   getAllLoreSlugs,
+  getGenericPhoto,
   getLore,
   getLoreEvent,
 } from "@/lib/data/leagueData";
@@ -42,7 +43,10 @@ export default async function LoreDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const event = await getLoreEvent(slug);
+  const [event, genericPhoto] = await Promise.all([
+    getLoreEvent(slug),
+    getGenericPhoto(),
+  ]);
   if (!event) notFound();
 
   const others = (await getLore()).filter((l) => l.slug !== slug).slice(0, 3);
@@ -70,6 +74,7 @@ export default async function LoreDetailPage({
 
         <CoverImage
           src={event.imageUrl}
+          fallbackSrc={genericPhoto}
           alt={event.name}
           priority
           className="mt-6 aspect-[16/9] w-full rounded-xl border border-white/10"
@@ -92,7 +97,7 @@ export default async function LoreDetailPage({
           <SectionHeader title="More From the Archive" />
           <div className="grid gap-3 sm:grid-cols-2">
             {others.map((e) => (
-              <LoreCard key={e.id} event={e} />
+              <LoreCard key={e.id} event={e} genericImageUrl={genericPhoto} />
             ))}
           </div>
         </section>

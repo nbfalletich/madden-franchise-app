@@ -1,12 +1,13 @@
 name: Generate AI content
 
-# Regenerates data/generated/{news,social}.json from the Google Sheet and
-# commits the result. Vercel redeploys on the push.
+# Regenerates data/generated/{news,social,driveMap}.json from the Google Sheet
+# and Drive folder, then commits any changes. Vercel redeploys on the push.
 #
 # Required repo secrets (Settings -> Secrets and variables -> Actions):
-#   ANTHROPIC_API_KEY   - your Anthropic API key
-#   SHEET_ID            - the Google Sheets workbook id (same as the Vercel env var)
-#   GOOGLE_API_KEY      - Google API key with the Drive API enabled (for photo linkage)
+#   ANTHROPIC_API_KEY   - Anthropic API key (required — news/social won't run without it)
+#   SHEET_ID            - Google Sheets workbook id (same value as the Vercel env var)
+#   GOOGLE_API_KEY      - Google API key with the Drive API enabled (optional — the
+#                         photo-map step is skipped if it's missing)
 
 on:
   schedule:
@@ -27,17 +28,35 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      HAS_ANTHROPIC: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+      HAS_SHEET_ID: ${{ secrets.SHEET_ID != '' }}
+      HAS_GOOGLE_KEY: ${{ secrets.GOOGLE_API_KEY != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
 
-      - run: npm ci
+      - name: Preflight — which secrets are configured
+        run: |
+          echo "ANTHROPIC_API_KEY set : $HAS_ANTHROPIC"
+          echo "SHEET_ID set          : $HAS_SHEET_ID"
+          echo "GOOGLE_API_KEY set    : $HAS_GOOGLE_KEY"
+          if [ "$HAS_ANTHROPIC" != "true" ]; then
+            echo "::error::ANTHROPIC_API_KEY repo secret is missing — add it under Settings > Secrets and variables > Actions"
+            exit 1
+          fi
+          if [ "$HAS_SHEET_ID" != "true" ]; then
+            echo "::warning::SHEET_ID repo secret is missing — generation will run against the committed seed snapshot, not the live sheet"
+          fi
+
+      - run: npm install --no-audit --no-fund
 
       - name: Build Drive photo map
+        if: env.HAS_GOOGLE_KEY == 'true'
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           SHEET_ID: ${{ secrets.SHEET_ID }}

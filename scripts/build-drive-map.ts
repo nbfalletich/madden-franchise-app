@@ -18,7 +18,13 @@ const OUT = path.join(process.cwd(), "data", "generated", "driveMap.json");
 
 async function main() {
   const apiKey = process.env.GOOGLE_API_KEY?.trim();
-  if (!apiKey) throw new Error("GOOGLE_API_KEY is not set");
+  if (!apiKey) {
+    console.warn(
+      "GOOGLE_API_KEY not set — keeping the existing data/generated/driveMap.json. " +
+        "Set it to (re)build the photo map from the Drive folder.",
+    );
+    return;
+  }
 
   console.log(`Listing Drive folder ${DRIVE_FOLDER_ID} …`);
   const map = await fetchDriveMapLive(apiKey);

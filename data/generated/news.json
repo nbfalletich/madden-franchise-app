@@ -1,5 +1,250 @@
 [
   {
+    "slug": "nathan-2028-review",
+    "title": "Green Bay's 2028 Ends Early: Packers Miss the Playoffs",
+    "subheadline": "Nathan's Packers close the 2028 season on the outside looking in, and January belongs to somebody else again.",
+    "summary": "The 2028 season is over in Green Bay, and it ended without a postseason ticket. Nathan's Packers missed the playoffs, closing the book on a year that will be remembered for what it didn't produce rather than what it did.",
+    "content": [
+      "The 2028 season is over in Green Bay, and it ended without a postseason ticket. Nathan's Packers missed the playoffs, closing the book on a year that will be remembered for what it didn't produce rather than what it did.",
+      "The meaning is simple and it stings: another calendar turns with no trophy in the case. Nathan's career ledger sits at 9-8 with zero titles, and in a three-man league where Luke's Cowboys and Ryan's Lions are keeping their own receipts, a missed January is not just a bad year — it's a year the other two get to grow into.",
+      "So Green Bay heads into the offseason with time it didn't want and clarity it needs. The league is still young enough that no dynasty has been written. That door is open. Nathan just has to walk back through it."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:52:53.110Z",
+    "teamIds": [
+      "GB"
+    ],
+    "tags": [
+      "packers",
+      "nathan",
+      "2028",
+      "missed-playoffs"
+    ],
+    "pullQuote": "In a three-man league, a missed January isn't a gap year. It's a head start for somebody else.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "Missing out hurts more in Green Bay than just about anywhere, but I've seen teams come out of a winter like this meaner than they went in. You don't quit throwing it because one year got away."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "No playoffs, no excuses. You want respect in this league, you gotta earn it in January — and January didn't call."
+      }
+    ],
+    "sourceKey": "career:NATHAN-2028:7522fdb4d3"
+  },
+  {
+    "slug": "luke-2028-review",
+    "title": "Luke's Cowboys Fall One Win Short in NFC Title Game",
+    "subheadline": "Dallas reached the conference championship in 2028 and left it without the trip to the Super Bowl, keeping Luke's title count at zero.",
+    "summary": "The Dallas Cowboys' 2028 season ended in the NFC Championship Game. Luke got his team to the doorstep of the Super Bowl, and the door did not open.",
+    "content": [
+      "The Dallas Cowboys' 2028 season ended in the NFC Championship Game. Luke got his team to the doorstep of the Super Bowl, and the door did not open.",
+      "That is the cruelty of the round Luke just survived and then lost: there is no consolation in it. A conference title game is proof of a contender and a receipt for nothing. Dallas is now a team that has been measured against the best in the NFC and found to be one result short, which is closer than most and still not close enough.",
+      "Luke remains without a championship. So do Nathan and Ryan. But Luke is the one who has now seen how the last step feels, and in this league that knowledge is either a burden or a blueprint. Dallas gets an offseason to decide which."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:52:41.818Z",
+    "teamIds": [
+      "DAL"
+    ],
+    "tags": [
+      "cowboys",
+      "luke",
+      "nfc championship",
+      "2028"
+    ],
+    "pullQuote": "A conference title game is proof of a contender and a receipt for nothing.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I've stood on that field after a championship game. You don't forget it, and you shouldn't. That's the fuel right there for Luke and those Cowboys."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Dallas made noise. Nobody hangs a banner for noise."
+      }
+    ],
+    "sourceKey": "career:LUKE-2028:906630255b"
+  },
+  {
+    "slug": "ryan-2028-review",
+    "title": "Ryan and Detroit Take It All: Lions Win the 2028 Super Bowl",
+    "subheadline": "A 12-5 season ends with the first championship in a three-man league that had never crowned anyone.",
+    "summary": "Detroit is a champion. Ryan's Lions closed the 2028 season at 12-5 and finished the job on the last night of the year, claiming the Super Bowl and ending the only drought this league has ever known.",
+    "content": [
+      "Detroit is a champion. Ryan's Lions closed the 2028 season at 12-5 and finished the job on the last night of the year, claiming the Super Bowl and ending the only drought this league has ever known.",
+      "The number that matters most isn't 12-5. It's the one that changed from zero. In a franchise shared by three friends, nobody had ever lifted anything. Ryan went first. Luke's Cowboys and Nathan's Packers now spend an offseason staring at a trophy case that belongs to Detroit.",
+      "History in this league is short, which makes it heavy. Everything written from here gets measured against a Lions team that went 12-5 and refused to lose the last game."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:52:32.320Z",
+    "teamIds": [
+      "DET"
+    ],
+    "tags": [
+      "lions",
+      "ryan",
+      "super bowl",
+      "2028",
+      "champions"
+    ],
+    "pullQuote": "Nobody in this league had ever won anything. Now somebody has, and his name is Ryan.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "Twelve and five is nice, but that's not what he'll remember. He'll remember walking off the field with the last game of the year in his pocket. That never leaves you."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "They can talk all they want now. Detroit got the ring, everybody else got the offseason."
+      }
+    ],
+    "sourceKey": "career:RYAN-2028:ef890d882d"
+  },
+  {
+    "slug": "2028-awards",
+    "title": "Burrow Takes 2028 MVP as League Awards Stall",
+    "subheadline": "Cincinnati's quarterback claims the season's biggest individual honor while Coach of the Year, DPOY, and Super Bowl MVP remain unclaimed.",
+    "summary": "Joe Burrow is the 2028 Most Valuable Player. The award goes to Cincinnati, and it goes to a quarterback, which means the three men running Dallas, Green Bay, and Detroit spent another season watching the league's brighte",
+    "content": [
+      "Joe Burrow is the 2028 Most Valuable Player. The award goes to Cincinnati, and it goes to a quarterback, which means the three men running Dallas, Green Bay, and Detroit spent another season watching the league's brightest trophy leave the room without them.",
+      "That's the sting of it. Luke, Nathan, and Ryan have built their franchises inside a league where twenty-nine CPU teams are supposed to be scenery — and the scenery just produced the MVP. No human sideline claimed the headline. Not the Cowboys, not the Packers, not the Lions.",
+      "What's left is still on the table. Coach of the Year, Defensive Player of the Year, and Super Bowl MVP remain undecided, and every one of them is a door the three of them can still walk through. Burrow has his. The rest of 2028 is unwritten."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:52:22.902Z",
+    "tags": [
+      "awards",
+      "mvp",
+      "2028",
+      "joe burrow"
+    ],
+    "pullQuote": "Burrow has his. The rest of 2028 is unwritten.",
+    "personalityQuotes": [
+      {
+        "personality": "Mel Kiper Jr.",
+        "quote": "You give a quarterback like Joe Burrow a full season and this is what you get — MVP, no debate, no asterisk. Now, the other hardware? That's wide open, and I'd be watching the human-run rooms very closely."
+      },
+      {
+        "personality": "Todd Mcshay",
+        "quote": "Three coaches, three franchises, zero MVPs. That's not a knock — that's a scoreboard. Coach of the Year and DPOY are still undecided, and somebody in Dallas, Green Bay, or Detroit has to go take one."
+      }
+    ],
+    "sourceKey": "award:2028:b154f78159"
+  },
+  {
+    "slug": "2028-champions",
+    "title": "Ryan's Lions Win It All, Break the League's Zero",
+    "subheadline": "Detroit outlasted New England in the 2028 Super Bowl to claim the first championship any human coach in this league has ever held.",
+    "summary": "The Detroit Lions are champions. Ryan's team came out of the NFC, met the AFC's Patriots on the biggest stage of the 2028 season, and left with the trophy — the first one ever lifted in this franchise's short, stubborn h",
+    "content": [
+      "The Detroit Lions are champions. Ryan's team came out of the NFC, met the AFC's Patriots on the biggest stage of the 2028 season, and left with the trophy — the first one ever lifted in this franchise's short, stubborn history.",
+      "That's the part that will echo. Until Sunday, all three chairs in this league were empty of hardware: Luke in Dallas, Nathan in Green Bay, Ryan in Detroit, three coaches and zero titles between them. That symmetry is gone forever. Detroit doesn't just own a ring; it owns the first one, and no season from here forward gets played without that fact sitting in the room.",
+      "New England's run ends as the AFC's best and nothing more. For Dallas and Green Bay, 2028 closes with a scoreboard neither can argue with — the NFC went through Detroit, and so, now, does everything else."
+    ],
+    "category": "Game Recaps",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:52:12.493Z",
+    "teamIds": [
+      "DET",
+      "NE",
+      "DET"
+    ],
+    "tags": [
+      "super bowl",
+      "lions",
+      "2028",
+      "ryan",
+      "patriots"
+    ],
+    "pullQuote": "Three coaches, zero titles. That math died in 2028.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "You can talk about it all you want in the offseason, but somebody's gotta actually go win the thing. Ryan went and won the thing. That's the whole story."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "First ring in the league. Detroit got it. Everybody else got next year."
+      }
+    ],
+    "sourceKey": "champion:2028:25e97337db"
+  },
+  {
+    "slug": "lions-dominate-the-cowboys-in-nfc-championship-game",
+    "title": "Ryan's Lions Bury Dallas in the NFC Championship",
+    "subheadline": "Luke Holland's Cowboys came a game short of the Super Bowl, and Ryan Welsh's Detroit Lions made sure it wasn't close.",
+    "summary": "It was supposed to be the game that made Luke Holland. One win in Detroit and Dallas belonged to him — the franchise, the narrative, the whole thing. Instead the 2027 NFC Championship became a coronation for the other si",
+    "content": [
+      "It was supposed to be the game that made Luke Holland. One win in Detroit and Dallas belonged to him — the franchise, the narrative, the whole thing. Instead the 2027 NFC Championship became a coronation for the other sideline, and the Cowboys spent the fourth quarter watching a season die in someone else's building.",
+      "Ryan Welsh has been the league's standard from the start. Twenty-three wins and eleven losses says the Lions rarely lose, and the championship game said something harsher: that when it matters most, Detroit doesn't just win, it dominates. Dallas got its title shot and got taken apart.",
+      "The cruelty is in the symmetry. Luke sits at 9-8 for his career. So does Nathan Bailey in Green Bay. Two coaches still hunting a first trophy, and the man standing between them owns the NFC's front door and won't hand over the key.",
+      "Now it's the 2028 offseason, and the loudest sound in the league is Dallas rebuilding in silence. Ryan still hasn't lifted a title either — which is the last thin comfort available to anyone chasing him. But the Lions have been to the mountain's edge, and they know the road. Everybody else is still looking for the trailhead."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:52:02.442Z",
+    "tags": [
+      "nfc championship",
+      "lions",
+      "cowboys",
+      "rivalry",
+      "2028 offseason"
+    ],
+    "pullQuote": "Dallas got its title shot. Detroit made it look like a scrimmage.",
+    "personalityQuotes": [
+      {
+        "personality": "Antonio Brown",
+        "quote": "They gave Luke the biggest stage in the conference and he got exposed on it. That's not a bad day, that's a résumé."
+      },
+      {
+        "personality": "Brett Favre",
+        "quote": "I've been on the wrong end of a game like that, and it stays with you all winter. Luke's got a choice now — let it break him or let it build him."
+      }
+    ],
+    "sourceKey": "event:lions-dominate-the-cowboys-in-nfc-championship-game:4577658a4b"
+  },
+  {
+    "slug": "tony-romo-second-dui",
+    "title": "Romo Stopped Again: Second DUI Shadows a Broadcast Legend",
+    "subheadline": "Tony Romo was pulled over for a second DUI following a golf outing with family, a story that has spilled from the outer league into every franchise front office this offseason.",
+    "summary": "The 2028 offseason was supposed to belong to the coaches — to Luke in Dallas, to Nathan in Green Bay, to Ryan in Detroit and his 23-11 ledger. Instead, the loudest news of the winter came from outside the lines entirely.",
+    "content": [
+      "The 2028 offseason was supposed to belong to the coaches — to Luke in Dallas, to Nathan in Green Bay, to Ryan in Detroit and his 23-11 ledger. Instead, the loudest news of the winter came from outside the lines entirely. Tony Romo, stopped for a second DUI after a golf outing with family.",
+      "In Dallas the name still carries weight it cannot put down. Romo's story and the Cowboys' story were braided together long before Luke ever took the headset, and a second charge lands differently in that city than it would anywhere else. It is not a football result. It is a reminder that the men whose names hang over these franchises are just men.",
+      "Around the league, the reaction has been quiet and careful. Nobody in this circle wants to make sport of it. What follows a second offense is not a debate about legacy but a question about a person, and that question does not get answered in a press conference or a box score.",
+      "So the offseason grinds on. Rosters get shaped, schedules get printed, and three coaches with zero titles between them go back to work. But the wire noted it, because league canon includes the hard weeks too — and this was one.",
+      "The 2028 season will be judged on wins. This week wasn't about any of them."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-01T03:51:49.172Z",
+    "imageUrl": "https://lh3.googleusercontent.com/d/1ds8xeo2SzVx4MPWHdC45STmkksXoCAWt=w1600",
+    "tags": [
+      "romo",
+      "outer-league",
+      "offseason",
+      "cowboys"
+    ],
+    "pullQuote": "It is not a football result. It is a reminder that the men whose names hang over these franchises are just men.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I've known Tony a long time. This ain't a football thing, it's a life thing, and I hope somebody close to him gets him some help before it gets worse."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Second time ain't a mistake, it's a pattern. People love you when you're on TV. Where they at now?"
+      }
+    ],
+    "sourceKey": "event:tony-romo-second-dui:fbcaaf646e"
+  },
+  {
     "slug": "nathan-2027-review",
     "title": "Nathan's Packers Finish 9-8, Miss the Playoffs",
     "subheadline": "Green Bay's 2027 season ends one game over .500 and one door short of January.",

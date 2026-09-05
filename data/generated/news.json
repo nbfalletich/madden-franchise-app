@@ -1,5 +1,336 @@
 [
   {
+    "slug": "ryan-2029-review",
+    "title": "Detroit's 2029 Ends in the Divisional Round",
+    "subheadline": "Ryan's Lions reached the NFC Divisional Round and were sent home, leaving the franchise still chasing its first title.",
+    "summary": "The Lions' 2029 season is over. Detroit made it to the NFC Divisional Round and lost there, the season closing not with collapse but with a door held shut one round short of the conference title game.",
+    "content": [
+      "The Lions' 2029 season is over. Detroit made it to the NFC Divisional Round and lost there, the season closing not with collapse but with a door held shut one round short of the conference title game.",
+      "That is the sting of it. Ryan has built the most efficient career resume in the league — 23-11 overall — and still has nothing in the trophy case. January keeps letting him in and then showing him out. For a coach who has spent years proving Detroit belongs among the contenders, belonging is starting to feel like the cheaper half of the job.",
+      "The meaning is simple and it will follow the Lions into the offseason: the standard in this league is no longer a good record or a playoff berth. Two rivals in Dallas and Green Bay are hunting the same empty prize, and none of the three has claimed it. Detroit had the clearest path in 2029 and let it close. The next one has to end differently."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:06:06.572Z",
+    "teamIds": [
+      "DET"
+    ],
+    "tags": [
+      "lions",
+      "ryan",
+      "playoffs",
+      "2029"
+    ],
+    "pullQuote": "January keeps letting him in and then showing him out.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I've been on that plane ride home. You sit there and replay every snap, and nobody says a word. That's the price of getting close — it hurts more than being bad ever did."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Divisional round ain't a résumé, it's a receipt. Ryan got the wins. Now go get the ring."
+      }
+    ],
+    "sourceKey": "career:RYAN-2029:004fd73e36"
+  },
+  {
+    "slug": "nathan-2029-review",
+    "title": "Packers Win 11, Lose January Again",
+    "subheadline": "Nathan's Green Bay closed 2029 at 11-6 and went out in the NFC Wild Card round, leaving another strong season without a trophy.",
+    "summary": "Eleven wins. Six losses. One weekend in January, and it was over. Green Bay's 2029 season ended in the NFC Wild Card round, the kind of exit that doesn't feel like a collapse so much as a door quietly closing while the l",
+    "content": [
+      "Eleven wins. Six losses. One weekend in January, and it was over. Green Bay's 2029 season ended in the NFC Wild Card round, the kind of exit that doesn't feel like a collapse so much as a door quietly closing while the lights are still on.",
+      "That's the cruelty of a record like 11-6. It's proof the roster works, proof the season was real, proof Nathan built something that belongs in the bracket. It also counts for nothing once the bracket starts. Green Bay's championship column is still empty, and the number that matters in this league remains zero.",
+      "Nathan now carries a 28-23 career mark and the same unfinished business as the men across the table in Dallas and Detroit. Somebody in this league is going to break through first. In 2029, it wasn't the Packers."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:05:55.331Z",
+    "teamIds": [
+      "GB"
+    ],
+    "tags": [
+      "packers",
+      "nathan",
+      "2029",
+      "playoffs",
+      "nfc"
+    ],
+    "pullQuote": "Eleven wins is a resume. In January, it's just a receipt.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I've been in that locker room in January. Eleven wins gets you a ticket, that's all. You don't get to keep anything unless you keep playing."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Wild card weekend don't care about your record. Nobody remembers who got in. They remember who got out."
+      }
+    ],
+    "sourceKey": "career:NATHAN-2029:2a51130dfc"
+  },
+  {
+    "slug": "luke-2029-review",
+    "title": "Cowboys Finish 8-9, Watch January From The Couch",
+    "subheadline": "Luke's Dallas season ends one game under .500 and one door short of the playoff field.",
+    "summary": "The 2029 Dallas Cowboys finished 8-9 and missed the playoffs. There is no softer way to phrase a season that lands a single game beneath even, no asterisk to hang on it, no tiebreaker to argue. Luke's club played sevente",
+    "content": [
+      "The 2029 Dallas Cowboys finished 8-9 and missed the playoffs. There is no softer way to phrase a season that lands a single game beneath even, no asterisk to hang on it, no tiebreaker to argue. Luke's club played seventeen games and ended the year on the outside, watching a bracket it never joined.",
+      "That's the weight of it. Eight and nine is the record that hurts most because it isn't a rebuild and it isn't a collapse — it's a team that was in the neighborhood all year and never found the address. Luke's career mark now sits at 28-23, still without a title, and another calendar page turns in a league where nobody has raised a trophy yet.",
+      "Somewhere in Green Bay and Detroit, the ledger gets read. Dallas gets an offseason instead of a January, and the only thing 2029 leaves behind is the itch to fix it."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:05:45.766Z",
+    "teamIds": [
+      "DAL"
+    ],
+    "tags": [
+      "cowboys",
+      "luke",
+      "2029",
+      "missed-playoffs"
+    ],
+    "pullQuote": "Eight and nine is the record that hurts most — close enough to feel, far enough to sting.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "Eight and nine will keep a coach up at night. You don't lose those games in December — you lose 'em somewhere in October and don't find out till it's too late."
+      }
+    ],
+    "sourceKey": "career:LUKE-2029:ed741de427"
+  },
+  {
+    "slug": "record-rookie-season-passing-tds",
+    "title": "Emmett Carman Throws 39 Touchdowns As A Rookie",
+    "subheadline": "The 2028 rookie season passing touchdown record now belongs to a first-year quarterback who spent the year making the impossible look procedural.",
+    "summary": "Thirty-nine. That is the number attached to Emmett Carman's name now, and it belongs to him alone — the most passing touchdowns ever thrown by a rookie in this league, set in 2028, in a debut season that stopped being a ",
+    "content": [
+      "Thirty-nine. That is the number attached to Emmett Carman's name now, and it belongs to him alone — the most passing touchdowns ever thrown by a rookie in this league, set in 2028, in a debut season that stopped being a curiosity somewhere around the halfway mark and became something closer to inevitability.",
+      "Records like this reset the ceiling for everyone who comes after. Every quarterback drafted into this league from here forward gets measured against a first-year mark that nobody thought a rookie would reach. Carman set the bar in his first try. The rest of the league gets to spend the next decade reaching for it."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:05:35.391Z",
+    "tags": [
+      "record",
+      "rookie",
+      "2028",
+      "quarterback"
+    ],
+    "pullQuote": "Thirty-nine touchdowns in year one — the number a whole generation of rookies now has to live under.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I threw a lot of footballs in my life and I never had a rookie year like that. Thirty-nine? As a first-year guy? That's not learning the league, that's running it."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Rookie throwing 39? I'm telling every receiver in the league right now — you want the ball, go get in that huddle."
+      }
+    ],
+    "sourceKey": "record:rookie-season-passing-tds:19bbefdd0b"
+  },
+  {
+    "slug": "record-rookie-season-passing-yds",
+    "title": "Carman's 4,779: A Rookie Rewrites the Book",
+    "subheadline": "Emmett Carman finished the 2028 season with 4,779 passing yards, the most ever thrown by a first-year quarterback in this league.",
+    "summary": "The number is 4,779. It belongs to Emmett Carman, and it belongs to his rookie season. No first-year passer in league history has thrown for more, and the 2028 campaign will be filed under his name for as long as the rec",
+    "content": [
+      "The number is 4,779. It belongs to Emmett Carman, and it belongs to his rookie season. No first-year passer in league history has thrown for more, and the 2028 campaign will be filed under his name for as long as the record book exists.",
+      "Rookie quarterbacks are supposed to survive their first year. Carman spent his rewriting the ceiling for everyone who follows."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:05:26.033Z",
+    "tags": [
+      "records",
+      "rookies",
+      "2028",
+      "passing"
+    ],
+    "pullQuote": "No first-year passer in league history has thrown for more.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I threw a lot of footballs in my life, and I never came close to that as a rookie. Nobody did. That kid just moved the bar."
+      }
+    ],
+    "sourceKey": "record:rookie-season-passing-yds:97571cc763"
+  },
+  {
+    "slug": "2029-awards",
+    "title": "Sanders Takes MVP, But a Corner Owns the Confetti",
+    "subheadline": "The 2029 awards slate crowned Shedeur Sanders, Mike McCarthy, and Maxx Crosby — then handed the biggest trophy of all to Kyler Gordon.",
+    "summary": "The 2029 season closed its books with Shedeur Sanders holding the MVP, Mike McCarthy named Coach of the Year, and Maxx Crosby taking Defensive Player of the Year. Three names, three different ways to bend a season. And t",
+    "content": [
+      "The 2029 season closed its books with Shedeur Sanders holding the MVP, Mike McCarthy named Coach of the Year, and Maxx Crosby taking Defensive Player of the Year. Three names, three different ways to bend a season. And then, when the lights were hottest, Super Bowl MVP went to a cornerback: Kyler Gordon.",
+      "That last one is the sentence this year will be remembered by. Quarterbacks collect regular-season hardware; February usually follows the same script. Gordon rewrote it, and in a league where three men in Dallas, Green Bay, and Detroit spend twelve months chasing exactly one piece of jewelry, the reminder lands hard — the trophy doesn't care which position group you built around.",
+      "No title for Luke, Nathan, or Ryan. Not yet. Another year of ledgers that read 'zero' in the only column that counts, and another offseason to argue about whether you chase the arm, the edge, or the corner who takes the whole thing home."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:05:19.329Z",
+    "tags": [
+      "awards",
+      "2029",
+      "mvp",
+      "super bowl"
+    ],
+    "pullQuote": "Quarterbacks win the awards. In 2029, a cornerback won the night.",
+    "personalityQuotes": [
+      {
+        "personality": "Mel Kiper Jr.",
+        "quote": "I've been saying it for years — you can find a franchise quarterback, and Sanders is that, but premium coverage wins you the last game of the season. Kyler Gordon just proved it on the biggest stage there is."
+      },
+      {
+        "personality": "Todd Mcshay",
+        "quote": "Look at the board: Sanders, Crosby, McCarthy, Gordon. That's an offense, an edge, a coach, and a corner. Every one of those is a blueprint, and all three of these guys still have zero rings to show for whichever one they picked."
+      }
+    ],
+    "sourceKey": "award:2029:ca1214d1ff"
+  },
+  {
+    "slug": "2029-champions",
+    "title": "Bears Take the 2029 Title, and the NFC Goes Quiet",
+    "subheadline": "Chicago outlasted Cleveland in the Super Bowl, leaving Dallas, Green Bay, and Detroit to watch a division rival lift the trophy.",
+    "summary": "The Chicago Bears are champions of 2029. They came out of the NFC, met the Cleveland Browns on the game's biggest stage, and walked off with the only piece of hardware that counts. The Browns' run through the AFC ended o",
+    "content": [
+      "The Chicago Bears are champions of 2029. They came out of the NFC, met the Cleveland Browns on the game's biggest stage, and walked off with the only piece of hardware that counts. The Browns' run through the AFC ended one win short.",
+      "The sting for this league is geographic. Chicago shares a division with Nathan's Packers and Ryan's Lions, which means the banner went up inside the NFC North without a human coach anywhere near it. Luke's Cowboys watched from a different conference and the same distance. Three franchises, three men, still zero titles between them.",
+      "That's the record now, and records are how history gets written. The Bears own 2029. Everyone else owns the offseason.",
+      "Somebody in this league has to answer that."
+    ],
+    "category": "Game Recaps",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:05:05.921Z",
+    "teamIds": [
+      "CHI",
+      "CLE",
+      "CHI"
+    ],
+    "tags": [
+      "super bowl",
+      "2029",
+      "bears",
+      "nfc north"
+    ],
+    "pullQuote": "Three franchises, three men, still zero titles between them.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "You let a division rival win the whole thing, you're gonna hear about it in Green Bay all year. That's just how it works up there."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Bears got the ring. Browns got the flight home. Ain't no participation trophies in February."
+      }
+    ],
+    "sourceKey": "champion:2029:f1bd3b48f3"
+  },
+  {
+    "slug": "first-non-verbal-autistic-qb",
+    "title": "Dallas Found Its Quarterback. He Never Said A Word.",
+    "subheadline": "The NFL's first non-verbal autistic player rewrote the rookie record book in 2028 — and enters 2029 as the league's most-studied man under center.",
+    "summary": "Cowboys camp is quieter than it's been in years, and that's the point. Luke's rookie quarterback communicates without speech, and by midseason 2028 the entire Dallas operation had reshaped itself around him: signals, tab",
+    "content": [
+      "Cowboys camp is quieter than it's been in years, and that's the point. Luke's rookie quarterback communicates without speech, and by midseason 2028 the entire Dallas operation had reshaped itself around him: signals, tablets, tempo, eye contact held a half-second longer than anyone bothers to hold it. What began as an accommodation became an advantage. Defenses spent the fall listening for a cadence that never came.",
+      "The numbers ended the argument before it started. Single-season rookie records — plural — now belong to a player the league had no template for. Dallas didn't hand him a season of patience. He took the job and turned it into history, one silent snap at a time.",
+      "Nathan and Ryan spent 2028 preparing for it and will spend 2029 preparing for it again, because Green Bay and Detroit share a calendar with Dallas and no one gets to opt out of a divisional problem this size. Luke's career record sits at 28-23 with no title to show for it. That has never mattered less to the rest of the league than it does right now.",
+      "So the 2029 preseason opens with one real question, and it's not whether he can talk. It's whether anyone can stop him."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:04:56.313Z",
+    "tags": [
+      "cowboys",
+      "luke",
+      "rookie",
+      "records",
+      "2029preseason"
+    ],
+    "pullQuote": "Defenses spent the fall listening for a cadence that never came.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I played that position a long time and I talked the whole way through it. This kid doesn't need to. He sees it, he throws it, and the ball tells you everything. That's the game at its purest, honestly."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "Man broke rookie records without saying a word. Everybody in this league talks. Nobody says anything. He said all of it."
+      }
+    ],
+    "sourceKey": "event:first-non-verbal-autistic-qb:f520d869f1"
+  },
+  {
+    "slug": "luke-holland-survives-the-hot-seat-in-dallas",
+    "title": "Luke Holland Survives Dallas, Keeps The Chair",
+    "subheadline": "A rough 2028 start put the Cowboys' head coach on the hot seat, but Luke Holland walks into 2029 preseason still holding the whistle.",
+    "summary": "There is no quieter room in football than a Dallas facility in the middle of a bad start. Luke Holland lived in it. The 2028 season opened wrong, and in Texas a wrong opening becomes a referendum before the leaves turn. ",
+    "content": [
+      "There is no quieter room in football than a Dallas facility in the middle of a bad start. Luke Holland lived in it. The 2028 season opened wrong, and in Texas a wrong opening becomes a referendum before the leaves turn. Every hallway conversation carries a verdict in it.",
+      "He survived. That is the whole headline and, in this business, the whole miracle. The job that has chewed through better men than the standings suggest is still his, and the 2029 preseason begins with the same voice in the same room, which is not nothing. Careers in this league are measured in the seasons you were allowed to have.",
+      "The context is not kind. Holland sits at 28-23 for his career with no titles, the same ledger Nathan Kruger carries in Green Bay, while Ryan's Lions have quietly assembled a better winning percentage in fewer games. Three men, one division of ambition, and nobody has raised anything yet. That is the pressure: not the losing, but the not-yet-winning.",
+      "So the reprieve comes with a bill attached. Holland kept the chair. Now he has to prove the chair was worth keeping."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:04:41.529Z",
+    "tags": [
+      "cowboys",
+      "luke",
+      "hot seat",
+      "2029 preseason"
+    ],
+    "pullQuote": "Careers in this league are measured in the seasons you were allowed to have.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I've been on that seat. You don't ever really get up off it — you just find out you get another year to sit there and try to fix it."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "They kept him. Now it's on him. Nobody remembers who survived, they remember who won."
+      }
+    ],
+    "sourceKey": "event:luke-holland-survives-the-hot-seat-in-dallas:e065c0e768"
+  },
+  {
+    "slug": "coach-ryan-welsh-fired-and-rehired-by-lions",
+    "title": "Detroit Fired Ryan Welsh. Detroit Took Him Back.",
+    "subheadline": "Seven days after a divisional-round exit to the Saints ended his season, the Lions coach was out — and then, under the weight of fan protests, back in his own office.",
+    "summary": "It started with a loss to New Orleans in the NFC Divisional Round, and it ended somewhere stranger. The circumstances around Welsh's dismissal have never been fully explained — a mysterious incident, a decision made quic",
+    "content": [
+      "It started with a loss to New Orleans in the NFC Divisional Round, and it ended somewhere stranger. The circumstances around Welsh's dismissal have never been fully explained — a mysterious incident, a decision made quickly, a franchise that woke up the next morning without its head coach. Detroit has watched a lot of things go wrong over the years. It had never watched this.",
+      "Then the city answered. Not quietly. The protests came fast enough and loud enough that within a week the Lions reversed a decision most organizations would have spent a year defending. Welsh walked back through the same doors he'd been shown out of. Same desk. Same whiteboard. A 23-11 career record that suddenly reads like an argument he never had to make himself.",
+      "What that buys him is complicated. Ryan Welsh is now a coach who knows exactly what his ownership will do under pressure, and exactly what his fanbase will do under pressure, and those two answers were not the same. In Dallas and Green Bay, Luke and Nathan spent the offseason watching a rival get handed something rarer than a trophy: proof that a city would fight for him.",
+      "Now it's 2029 preseason, and the grace period is the shortest kind. The Lions still have no title. Welsh still has no title. The only thing that's changed is that everyone in the building knows how close the ground can open up — and how loudly Detroit will scream to close it back."
+    ],
+    "category": "League News",
+    "author": "Franchise Wire",
+    "publishedAt": "2026-09-05T10:04:29.584Z",
+    "tags": [
+      "lions",
+      "ryan",
+      "coaching",
+      "2029preseason",
+      "lore"
+    ],
+    "pullQuote": "He was fired on a Tuesday and rehired by a city that refused to accept the paperwork.",
+    "personalityQuotes": [
+      {
+        "personality": "Brett Favre",
+        "quote": "I've seen coaches lose their jobs and I've seen 'em get 'em back, but not in the same month, and not because the fans went and made it happen. That town decided for 'em. You don't forget that. Neither does he."
+      },
+      {
+        "personality": "Antonio Brown",
+        "quote": "They fired that man and the city said nah, run it back. That's power. Most coaches never find out if anybody would ride for 'em — he found out in a week."
+      }
+    ],
+    "sourceKey": "event:coach-ryan-welsh-fired-and-rehired-by-lions:806cbdafc5"
+  },
+  {
     "slug": "record-single-season-rec-yds",
     "title": "Chase Puts 1,989 on the Board, and the Record Book Bends",
     "subheadline": "Ja'Marr Chase closed the 2027 season with 1,989 receiving yards, the most anyone has posted in a single year in this league.",
